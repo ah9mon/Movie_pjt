@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>영화 상세 정보 페이지</h1>
+  <hr>
+  '''
+  영화정보 
+  제목
+  관객수 :
+  개봉일 :
+  장르 :
+  평점 : 
+  포스터 URL :
+  배우 : (대충 사진)
+  줄거리 : 
+  ''' 
+  <div>
+    <p><b> {{movie.title}} </b></p>
+    <p>Audience : {{movie.audience}} </p>
+    <p>Release Dates : {{movie.release_date}} </p>
+    <p>Genre : {{movie.genre}} </p>
+    <p>Score : {{movie.score}} </p>
+    <p>Poster URL: {{movie.poster_url}} </p>
+    <p>Actor: </p>
+    {% if movie.actor_image %}
+      <img src=" {{movie.actor_image.url}} " alt="{{movie.actor_image.url}}">
+    {% endif %}
+    <p> {{movie.description}} </p>
+  </div>
+  # 수정 및 삭제 버튼 
+  # 목록으로 돌아가기 
+  <div>
+    <hr>
+    <a href="{% url 'movies:update' movie.pk %}">UPDATE</a>
+    <form action="{% url 'movies:delete' movie.pk %}" id="delete-form">
+      {% csrf_token %}
+      <input type="submit" value="DELETE" id="delete-btn" />
+    </form><br>
+    <hr>
+    <a href="{% url 'movies:index' %}">BACK</a>
+  </div>
+
+{% endblock content %}
