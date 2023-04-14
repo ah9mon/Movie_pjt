@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--현재 페이지 명-->
+<div>
+    <h1>Signup</h1>
+</div>
+
+<!--회원가입 폼-->
+<div>
+    <form action="{% url 'accounts:signup' %}" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="submit">
+    </form>
+</div>
+
+<!--회원가입 취소하고 메인페이지로 돌아가기-->
+<div>
+    <a href="{% url 'movies:index' %}">돌아가기</a>
+</div>
+
+{% endblock content %}
+
+
+
